@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<!--
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+        <!-- <link rel="stylesheet" type="text/css" href="css/index.css" /> -->
+        <link rel="stylesheet" type="text/css" href="js/jquery/jquery.mobile-1.3.1.css">
+        <link rel="stylesheet" type="text/css" href="css/saumya.css" />
+
+
+        <title>The Address</title>
+    </head>
+    <body>
+        <!--
+        <div class="app">
+            <h1>Apache Cordova</h1>
+            <div id="deviceready" class="blink">
+                <p class="event listening">Connecting to Device</p>
+                <p class="event received">Device is Ready</p>
+            </div>
+        </div>
+        -->
+        
+        <!-- page -->
+        <div data-role="page" id="page_1">
+         
+            <div data-role="header" data-position="fixed" class="big-bar">
+            	<div class="h_big-bar">
+	            	<div class="h_main">The Address</div>
+	                <div class="h_right" id="save_address">Save</div>
+	            </div>
+            </div>
+        
+            <div data-role="content">
+                <div>
+                    <!-- <label>Current address :</label> -->
+                    <input type="text" name="text-name" id="text-name" value="" placeholder="Name">
+                    <input type="text" name="text-country" id="text-country" value="" placeholder="Country">
+                    <input type="text" name="text-state" id="text-state" value="" placeholder="State">
+                    <input type="text" name="text-city" id="text-city" value="" placeholder="City">
+                    <input type="text" name="text-street1" id="text-street1" value="" placeholder="Bldg No / Apprt No">
+                    <input type="text" name="text-street2" id="text-street2" value="" placeholder="Street">
+                    <input type="text" name="text-code" id="text-code" value="" placeholder="Postal Code">
+                    
+                </div>
+                <div id="a_total">
+                    <label id="total_address"></label>
+                </div>
+            </div>
+            
+            <div data-role="footer" data-position="fixed">
+                <div class="h_big-bar">
+	            	<div class="f_left" id="clear_address" >Clear</div>
+	                <div class="f_right" id="get_address">Undo Clear</div>
+	            </div>
+            </div>
+            
+        </div><!-- /page -->
+
+        <!-- jQuery -->
+        <script type="text/javascript" src="js/jquery/jquery-2.0.0.js"></script>
+        <script type="text/javascript" src="js/jquery/jquery.mobile-1.3.1.js"></script>
+        <!-- cordova -->
+        <script type="text/javascript" src="cordova-2.7.0.js"></script>
+        <!-- lawn chair -->
+        <script type="text/javascript" src="js/libs/lawnchair-0.6.1.js"></script>
+        <script type="text/javascript" src="js/libs/lawnchair_adapters/dom.js"></script>
+        <script type="text/javascript" src="js/libs/lawnchair_adapters/html5-filesystem.js"></script>
+        <!-- Framework -->
+        <script type="text/javascript" src="js/saumya/app_engine.js"></script>
+        <!-- <script type="text/javascript" src="js/saumya/app_engine_ts.js"></script> -->
+        <!-- Lastly, initialise the application -->
+        <script type="text/javascript" src="js/index.js"></script>
+    </body>
+</html>

@@ -1,0 +1,88 @@
+/* Fonts by : http://www.fontsquirrel.com/fonts/Caviar-Dreams */
+@font-face{
+	font-family: CaviarDreams;
+	src: url("fonts/CaviarDreams.ttf");
+}
+@font-face{
+	font-family: CaviarDreamsBold;
+	src: url("fonts/Caviar_Dreams_Bold.ttf");
+}
+#page_1{
+	background: #FF6C00;
+}
+.h_big-bar{
+	float:left;
+	background:#000000;
+	height: 80px;
+	width: 100%;
+}
+.h_main{
+	float:left;
+	background: #AA0000;
+	width:80%;
+	height: 100%;
+	
+	color: #7A0900;
+	text-align: center;
+	font-size: 50px;
+	text-shadow: 1px 1px 2px #FF7800, -2px -2px 1px #000000;
+	
+	line-height: 80px;
+	font-family: CaviarDreamsBold;
+}
+.h_right{
+	float:left;
+	background: #660000;
+	width: 20%;
+	height: 100%;
+	
+	text-align: center;
+	font-size: 30px;
+	
+	line-height: 80px;
+	font-family: CaviarDreams;
+}
+
+.f_left{
+	float:left;
+	background: #BB0000;
+	width:50%;
+	height: 100%;
+	
+	text-align: center;
+	font-size: 30px;
+	
+	line-height: 80px;
+	font-family: CaviarDreams;
+}
+.f_right{
+	float:left;
+	background: #AA0000;
+	width: 50%;
+	height: 100%;
+	
+	text-align: center;
+	font-size: 30px;
+	
+	line-height: 80px;
+	font-family: CaviarDreams;
+}
+
+#a_total{
+	width: 100%;
+	height: 260px;
+	background: #FFB640;
+	
+}
+#total_address{
+	display:block;
+	color:#A75600;
+	text-align: center;
+	text-shadow: 1px 1px 1px #FFA5A6, -1px -1px 1px #000000; 
+	
+	font-size: 26px;
+	line-height: 36px;
+	
+	padding-top: 30px; 
+	font-family: CaviarDreams;
+}
