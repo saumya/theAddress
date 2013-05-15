@@ -89,7 +89,9 @@ var AppEngine = {
 				}else{
 					//alert('No address stored yet !');
 					//navigator.notification.alert(message, alertCallback, [title], [buttonName])
-					navigator.notification.alert('Save the one address, which you need most now.', undefined, 'Get Started.','OK');
+					//navigator.notification.alert('Save the one address, which you need most now.', undefined, 'Get Started.','OK');
+					var s1 = "Save the one address, which you need most now.";
+					$("#total_address").html(s1);
 				};
 			}
 		);
