@@ -1,5 +1,5 @@
 var AppEngine = {
-	a_counter: 0,
+	a_counter: 1,
 	init: function(){
 		console.log('AppEngine : init : '+this.a_counter);
 		//initialising properties
@@ -14,6 +14,8 @@ var AppEngine = {
 		$("#save_address").on('tap',that,this.onSaveTapped);
 		$("#clear_address").on('tap',that,this.onClearTapped);
 		$("#get_address").on('tap',that,this.onGetAddressTapped);
+		
+		$("#a_total").on('swipeleft',that,this.onSwipeLeft);
 		//orientation change
 		$(window).on( "orientationchange",function(event){
 			console.log('AppEngine : onOrientationChange : '+event.orientation);//portrait,landscape
@@ -33,6 +35,33 @@ var AppEngine = {
 	onPortraitMode:function(){
 		console.log('AppEngine : onPortraitMode : ');
 		$.mobile.navigate( "#page_1");
+	},
+	
+	onSwipeLeft:function(event){
+		event.preventDefault();
+		var that = event.data;
+		//console.log('AppEngine : onSwipeLeft : this.a_counter='+that.a_counter);
+		//$("#a_total").animate({opacity: '-=0.10',height:'-=10px',left:'-=10px'});
+		//$("#a_total").animate({left:'-=50px', height:'-=50px'}, 1000);
+		var a = $("#a_total");
+		TweenMax.to(a, 1,{x:'-1000px',onCompleteScope:that,onComplete:that.onSlideOutDone});
+	},
+	
+	onSlideOutDone : function(){
+		console.log('Done Animating : Out : this.a_counter='+this.a_counter);
+		var that = this;
+		//do the DB instertion stuff
+		this.a_counter++;//increase the storage index
+		if(this.a_counter>=5){
+			alert('Max reached');
+		}
+		console.log('Done Animating : Out : this.a_counter='+this.a_counter);
+		//animate back in
+		var a = $("#a_total");
+		TweenMax.to(a, 1,{x:'0px',onCompleteScope:that,onComplete:that.onSlideInDone});
+	},
+	onSlideInDone:function(){
+		console.log('Done Animating : In ');
 	},
 	
 	onSaveTapped: function(event){
@@ -82,7 +111,11 @@ var AppEngine = {
 		//save it locally
 		var that = this;
 		console.log('AppEngine : saveDataLocally : saved : this.a_counter='+this.a_counter);
-		this.a_counter++;
+		/*
+		if(){
+			this.a_counter++;
+		};
+		*/
 		//make the object to store
 		var myAddress = {key:this.a_counter,address:{myName:aName,myCountry:aCountry,myState:aState,myCity:aCity,myStreet1:aStreet1,myStreet2:aStreet2,myCode:aCode}};
 		//store the object in DB
