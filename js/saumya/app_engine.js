@@ -13,7 +13,27 @@ var AppEngine = {
 		$("#save_address").on('tap',that,this.onSaveTapped);
 		$("#clear_address").on('tap',that,this.onClearTapped);
 		$("#get_address").on('tap',that,this.onGetAddressTapped);
+		//orientation change
+		$(window).on( "orientationchange",function(event){
+			console.log('AppEngine : onOrientationChange : '+event.orientation);//portrait,landscape
+			if(event.orientation==='portrait'){
+				that.onPortraitMode();
+			}else{
+				that.onLandscapeMode();
+			}
+		});
 	},
+	
+	onLandscapeMode:function(){
+		console.log('AppEngine : onLandscapeMode : ');
+		//hide the form. Only show the list
+		$.mobile.navigate( "#page_L");
+	},
+	onPortraitMode:function(){
+		console.log('AppEngine : onPortraitMode : ');
+		$.mobile.navigate( "#page_1");
+	},
+	
 	onSaveTapped: function(event){
 		event.preventDefault();
 		console.log('AppEngine : onSaveTapped : '+event.data);

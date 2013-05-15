@@ -86,3 +86,17 @@
 	padding-top: 30px; 
 	font-family: CaviarDreams;
 }
+
+
+.address_one{
+	display:block;
+	color:#A75600;
+	text-align: center;
+	text-shadow: 1px 1px 1px #FFA5A6, -1px -1px 1px #000000; 
+	
+	font-size: 26px;
+	line-height: 36px;
+	
+	padding-top: 30px; 
+	font-family: CaviarDreams;
+}
