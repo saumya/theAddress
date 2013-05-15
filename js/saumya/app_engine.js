@@ -80,9 +80,16 @@ var AppEngine = {
 		this.logIt(aCode);
 		//save it locally
 		//make the object to store
-		var myAddress = {key:'address',myName:aName,myCountry:aCountry,myState:aState,myCity:aCity,myStreet1:aStreet1,myStreet2:aStreet2,myCode:aCode};
+		var myAddress = {key:1,address:{myName:aName,myCountry:aCountry,myState:aState,myCity:aCity,myStreet1:aStreet1,myStreet2:aStreet2,myCode:aCode}};
 		//store the object in DB
-		this.myAddressDB.save(myAddress);
+		this.myAddressDB.save(myAddress,function(obj){
+				console.log(obj);
+				var address = obj.address;
+				for(var item in address){
+					console.log(item+':'+address[item]);
+				}
+			}
+		);
 		//navigator.notification.alert('The most needed address is saved for your future reference.', undefined, 'Yeeha.','OK');
 		//animate the box color
 		$("#a_total").hide().fadeIn('slow');
@@ -92,10 +99,11 @@ var AppEngine = {
 	checkForLocalDataAndFillTheForm: function(){
 		console.log('AppEngine : checkForLocalDataAndFillTheForm : ');
 		//check for the data, if its previously stored
-		this.myAddressDB.get('address',
-			function(theAddress){
+		this.myAddressDB.get(1,
+			function(result){
 				//check if we got the data
-				if(theAddress){
+				if(result){
+					var theAddress = result.address;
 					$('#text-name').val(theAddress.myName);
 					$('#text-country').val(theAddress.myCountry);
 					$('#text-state').val(theAddress.myState);
