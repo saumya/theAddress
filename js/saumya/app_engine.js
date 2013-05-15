@@ -1,6 +1,7 @@
 var AppEngine = {
+	a_counter: 0,
 	init: function(){
-		console.log('AppEngine : init');
+		console.log('AppEngine : init : '+this.a_counter);
 		//initialising properties
 		//this.myAddressDB='';
 		this.myAddressDB=Lawnchair('addressBook',function(e){
@@ -79,27 +80,30 @@ var AppEngine = {
 		this.logIt(aStreet2);
 		this.logIt(aCode);
 		//save it locally
+		var that = this;
+		console.log('AppEngine : saveDataLocally : saved : this.a_counter='+this.a_counter);
+		this.a_counter++;
 		//make the object to store
-		var myAddress = {key:1,address:{myName:aName,myCountry:aCountry,myState:aState,myCity:aCity,myStreet1:aStreet1,myStreet2:aStreet2,myCode:aCode}};
+		var myAddress = {key:this.a_counter,address:{myName:aName,myCountry:aCountry,myState:aState,myCity:aCity,myStreet1:aStreet1,myStreet2:aStreet2,myCode:aCode}};
 		//store the object in DB
 		this.myAddressDB.save(myAddress,function(obj){
-				console.log(obj);
+				console.log('AppEngine : saveDataLocally : saved : that.a_counter='+that.a_counter);
 				var address = obj.address;
 				for(var item in address){
 					console.log(item+':'+address[item]);
-				}
+				};
+				that.checkForLocalDataAndFillTheForm();
 			}
 		);
 		//navigator.notification.alert('The most needed address is saved for your future reference.', undefined, 'Yeeha.','OK');
 		//animate the box color
 		$("#a_total").hide().fadeIn('slow');
-		//
-		this.checkForLocalDataAndFillTheForm();
+		//this.checkForLocalDataAndFillTheForm();
 	},
 	checkForLocalDataAndFillTheForm: function(){
-		console.log('AppEngine : checkForLocalDataAndFillTheForm : ');
+		console.log('AppEngine : checkForLocalDataAndFillTheForm : this.a_counter='+this.a_counter);
 		//check for the data, if its previously stored
-		this.myAddressDB.get(1,
+		this.myAddressDB.get(this.a_counter,
 			function(result){
 				//check if we got the data
 				if(result){
