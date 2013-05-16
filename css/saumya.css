@@ -95,6 +95,7 @@
 .address_one{
 	width:100%;
 	height:260px;
+	display:block;
 	background: #FFB640;
 	
 	color:#A75600;

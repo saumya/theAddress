@@ -113,11 +113,6 @@ var AppEngine = {
 		//save it locally
 		var that = this;
 		console.log('AppEngine : saveDataLocally : saved : this.a_counter='+this.a_counter);
-		/*
-		if(){
-			this.a_counter++;
-		};
-		*/
 		//make the object to store
 		var myAddress = {key:this.a_counter,address:{myName:aName,myCountry:aCountry,myState:aState,myCity:aCity,myStreet1:aStreet1,myStreet2:aStreet2,myCode:aCode}};
 		//store the object in DB
@@ -162,6 +157,31 @@ var AppEngine = {
 				};
 			}
 		);
+		
+		//update the address-only page details
+		for(var i=1;i<=5;i++){
+			console.log(i);
+			var sID =("#a_"+i);
+			this.myAddressDB.get(i,
+					function(result){
+						//check if we got the data
+						if(result){
+							var theAddress = result.address;
+							var s = theAddress.myName+',<br/>'+theAddress.myStreet1+',<br/>'+theAddress.myStreet2+',<br/>'+theAddress.myCity+', '+theAddress.myState+', '+theAddress.myCountry+',<br/>'+theAddress.myCode;
+							 
+							$(sID).html(s);
+						}else{
+							//alert('No address stored yet !'+i);
+							//navigator.notification.alert(message, alertCallback, [title], [buttonName])
+							//navigator.notification.alert('Save the one address, which you need most now.', undefined, 'Get Started.','OK');
+							//var s1 = "Save the one address, which you need most now.";
+							//$("#total_address").html(s1);
+							$(sID).html('No Data');
+						};
+					}
+			);
+		};
+		
 	},
 
 	logIt:function(message){
