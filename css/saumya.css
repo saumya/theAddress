@@ -74,6 +74,7 @@
 	background: #FFB640;
 	
 }
+
 #total_address{
 	display:block;
 	color:#A75600;
@@ -87,9 +88,15 @@
 	font-family: CaviarDreams;
 }
 
-
+#a_total_L{
+	width: 100%;
+	height: 100%;
+}
 .address_one{
-	display:block;
+	width:100%;
+	height:260px;
+	background: #FFB640;
+	
 	color:#A75600;
 	text-align: center;
 	text-shadow: 1px 1px 1px #FFA5A6, -1px -1px 1px #000000; 

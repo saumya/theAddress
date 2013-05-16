@@ -44,21 +44,23 @@ var AppEngine = {
 		//$("#a_total").animate({opacity: '-=0.10',height:'-=10px',left:'-=10px'});
 		//$("#a_total").animate({left:'-=50px', height:'-=50px'}, 1000);
 		var a = $("#a_total");
-		TweenMax.to(a, 1,{x:'-1000px',onCompleteScope:that,onComplete:that.onSlideOutDone});
+		TweenMax.to(a, 1,{x:'-1000px',ease:Linear.easeIn,onCompleteScope:that,onComplete:that.onSlideOutDone});
 	},
 	
 	onSlideOutDone : function(){
 		console.log('Done Animating : Out : this.a_counter='+this.a_counter);
 		var that = this;
 		//do the DB instertion stuff
-		this.a_counter++;//increase the storage index
+		
 		if(this.a_counter>=5){
-			alert('Max reached');
+			//alert('Max reached');
+			this.a_counter=0;
 		}
+		this.a_counter++;//increase the storage index
 		console.log('Done Animating : Out : this.a_counter='+this.a_counter);
 		//animate back in
 		var a = $("#a_total");
-		TweenMax.to(a, 1,{x:'0px',onCompleteScope:that,onComplete:that.onSlideInDone});
+		TweenMax.to(a, 1,{x:'0px',ease:Linear.easeOut,onCompleteScope:that,onComplete:that.onSlideInDone});
 	},
 	onSlideInDone:function(){
 		console.log('Done Animating : In ');
