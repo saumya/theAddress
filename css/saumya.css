@@ -114,7 +114,7 @@
 .address_one{
 	width:100%;
 	height:260px;
-	display:block;
+	/*display:block;*/
 	background: #FFB640;
 	
 	margin-top: 20px;
@@ -128,4 +128,20 @@
 	
 	padding-top: 30px; 
 	font-family: CaviarDreams;
+}
+.btnSave{
+	width: 150px;
+	height: 30px;
+	display: block;
+	position: relative;
+	left: 650px;
+	top: 10px;
+	
+	background: #FFCC40;
+	
+	color: #000000;
+	font-size: 16px;
+	line-height: 26px;
+	
+	text-decoration: none;
 }

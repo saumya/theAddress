@@ -1,3 +1,23 @@
+/*
+ * 
+ * reference : 
+		var myContact = navigator.contacts.create({
+		"displayName":null,
+		"name":{"givenName":"Intellectual","formatted":"Intellectual Mollusc","middleName":null,"familyName":"Mollusc","honorificPrefix":null,"honorificSuffix":null},
+		"nickname":null,
+		"phoneNumbers":[{"type":"other","value":"00353 2345235","id":0,"pref":false},
+						{"type":"mobile","value":" ","id":1,"pref":false}],
+		"emails":[{"type":"home","value":"work@intellectualmollusc.net","id":0,"pref":false}],
+		"addresses":[{"postalCode":"","type":"work","id":0,"locality":"cork","pref":"false","streetAddress":" ","region":" ","country":"Ireland"}],
+		"ims":null,
+		"organizations":[{"name":"School","title":"Student","type":null,"pref":"false","department":"Kitchen"}],
+		"birthday":null,
+		"note":"YourRefUniqueID:47831",
+		"categories":null,
+		"urls":[{"type":"other","value":"intellectualmollusc.net","id":0,"pref":false}]
+	});
+ * 
+ */
 var AppEngine = {
 	a_counter: 1,
 	init: function(){
@@ -30,6 +50,8 @@ var AppEngine = {
 		$("#save_address").on('tap',that,this.onSaveTapped);
 		$("#clear_address").on('tap',that,this.onClearTapped);
 		$("#get_address").on('tap',that,this.onGetAddressTapped);
+		//
+		$(".btnSave").on('tap',that,this.onSaveToContacts);
 		//interactivity
 		$("#a_total").on('swipeleft',that,this.onSwipeLeft);
 		//orientation change
@@ -59,8 +81,24 @@ var AppEngine = {
 		//console.log('AppEngine : onSwipeLeft : this.a_counter='+that.a_counter);
 		//$("#a_total").animate({opacity: '-=0.10',height:'-=10px',left:'-=10px'});
 		//$("#a_total").animate({left:'-=50px', height:'-=50px'}, 1000);
+		/*
+		var aName = $('#text-name').val();
+		var aCountry = $('#text-country').val();
+		var aState = $('#text-state').val();
+		var aCity = $('#text-city').val();
+		var aStreet1 = $('#text-street1').val();
+		var aStreet2 = $('#text-street2').val();
+		var aCode = $('#text-code').val();
+		*/
+		//
 		var a = $("#a_total");
 		TweenMax.to(a, 1,{x:'-1000px',ease:Linear.easeIn,onCompleteScope:that,onComplete:that.onSlideOutDone});
+	},
+	onSuccess:function(contact){
+		console.log('SUCCESS');
+	},
+	onError:function(contactError){
+		console.log('FAIL : '+contactError.code);
 	},
 	
 	onSlideOutDone : function(){
@@ -185,20 +223,72 @@ var AppEngine = {
 		//update the address-only page details
 		for(var i=1;i<=5;i++){
 			var sID =("#a_"+i);
+			var bsID=("#s_a_"+i);
 			this.myAddressDB.get(i,
 					function(result){
 						//check if we got the data
 						if(result){
 							var theAddress = result.address;
 							var s = theAddress.myName+',<br/>'+theAddress.myStreet1+',<br/>'+theAddress.myStreet2+',<br/>'+theAddress.myCity+', '+theAddress.myState+', '+theAddress.myCountry+',<br/>'+theAddress.myCode;
-							 
+							
+							$(bsID).show();
 							$(sID).html(s);
 						}else{
-							$(sID).html('No Address yet!');
+							$(sID).html('No Address stored yet !');
+							$(bsID).hide();
 						};
 					}
 			);
 		};
+		
+	},
+	
+	
+	onSaveToContacts:function(event){
+		event.preventDefault();
+		console.log('AppEngine : onSaveToContacts : ');
+		var that = event.data;
+		var o = event.target;
+		console.log('id = '+o.id);//s_a_1
+		//var iID = '#'+(o.id).substr(4);
+		//console.log('iID='+iID);
+		//console.log('notes='+$(iID).html());
+		var i = (o.id).substr(4);
+		console.log('i='+i);
+		that.myAddressDB.get(i,
+				function(result){
+					//check if we got the data
+					if(result){
+						var theAddress = result.address;
+						//var sa = theAddress.myName+',<br/>'+theAddress.myStreet1+',<br/>'+theAddress.myStreet2+',<br/>'+theAddress.myCity+', '+theAddress.myState+', '+theAddress.myCountry+',<br/>'+theAddress.myCode;
+						//console.log(sa);
+						// create a new contact object
+						var myContact = navigator.contacts.create();
+						myContact.displayName = theAddress.myName;
+						myContact.nickname = theAddress.myName;       //specify both to support all devices
+						
+						var s = theAddress.myStreet1+','+theAddress.myStreet2+','+theAddress.myCity+','+theAddress.myState+','+theAddress.myCountry+','+theAddress.myCode;
+						myContact.note=s;
+						// save to device
+						//Fix this, not sure why its giving error!!
+						myContact.save(function(contact){
+							console.log('saved to AddressBook.');
+						},function(contactError){
+							console.log('Error saving to AddressBook.'+contactError.code);//Fix this.
+						});
+						
+						
+						
+					}else{
+						console.log(' xxxxx ');
+					};
+				}
+		);
+		
+		
+		
+		
+		
 		
 	},
 
