@@ -116,6 +116,7 @@
 	height:260px;
 	/*display:block;*/
 	background: #FFB640;
+	position:relative;
 	
 	margin-top: 20px;
 	
@@ -129,13 +130,15 @@
 	padding-top: 30px; 
 	font-family: CaviarDreams;
 }
+
 .btnSave{
 	width: 150px;
 	height: 30px;
 	display: block;
-	position: relative;
-	left: 650px;
+	position: absolute;
+	/*left: 650px;*/
 	top: 10px;
+	right:10px;
 	
 	background: #FFCC40;
 	
