@@ -269,6 +269,7 @@ var AppEngine = {
 						
 						var s = theAddress.myStreet1+','+theAddress.myStreet2+','+theAddress.myCity+','+theAddress.myState+','+theAddress.myCountry+','+theAddress.myCode;
 						myContact.note=s;
+						
 						// save to device
 						//Fix this, not sure why its giving error!!
 						myContact.save(function(contact){
@@ -276,8 +277,12 @@ var AppEngine = {
 						},function(contactError){
 							console.log('Error saving to AddressBook.'+contactError.code);//Fix this.
 						});
-						
-						
+						//myContact.save(that.onContactSaveSuccess,that.onContactSaveError);
+						//TODO: Fix this
+						//for the timebeing show success message to user
+						navigator.notification.vibrate(1000);
+						navigator.notification.alert('Address is added to the Contacts.', undefined, 'Success', 'Done');
+						navigator.notification.beep(1);
 						
 					}else{
 						console.log(' xxxxx ');
@@ -291,6 +296,17 @@ var AppEngine = {
 		
 		
 	},
+	
+	/*
+	// onSaveSuccess: Get a snapshot of the current contacts
+	onContactSaveSuccess : function(contact) {
+        alert("Save Success");
+    },
+    // onSaveError: Failed to get the contacts
+	onContactSaveError : function(contactError) {
+        alert("Error = " + contactError.code);
+    },
+    */
 
 	logIt:function(message){
 		console.log('AppEngine : logIt : '+message);
